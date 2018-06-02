@@ -95,6 +95,8 @@ class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDe
             try contexto.save()
             dismiss(animated: true, completion: nil)
             print("Imagenes guardadas")
+            self.llamarImagenes()
+            self.coleccion.reloadData()
         } catch let error as NSError {
             print("Error", error)
         }
@@ -128,7 +130,10 @@ class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDe
     
     func llamarImagenes() {
         let contexto = conexion()
+        let idLugar = String(id)
+        
         let fetchRequest: NSFetchRequest<Imagenes> = Imagenes.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id_lugares == %@", idLugar)
         
         do {
             imagenes = try contexto.fetch(fetchRequest)
