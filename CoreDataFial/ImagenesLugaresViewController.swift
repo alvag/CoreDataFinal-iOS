@@ -15,6 +15,7 @@ class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDe
     var id: Int16!
     var imagen: UIImage!
     var imagenes: [Imagenes] = []
+    var refrescar: UIRefreshControl = UIRefreshControl()
     @IBOutlet weak var coleccion: UICollectionView!
     
     func conexion() -> NSManagedObjectContext{
@@ -46,6 +47,13 @@ class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDe
         coleccion.collectionViewLayout = layout
         
         llamarImagenes()
+        
+        // refresh
+        //refrescar = UIRefreshControl()
+        coleccion.alwaysBounceVertical = true
+        refrescar.tintColor = UIColor.green
+        refrescar.addTarget(self, action: #selector(recargarDatos), for: .valueChanged)
+        coleccion.addSubview(refrescar)
     }
     
     @objc func accionCamara() {
@@ -107,8 +115,9 @@ class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDe
             try contexto.save()
             dismiss(animated: true, completion: nil)
             print("Imagenes guardadas")
-            self.llamarImagenes()
-            self.coleccion.reloadData()
+            //comentado para probar el swipe
+            //self.llamarImagenes()
+            //self.coleccion.reloadData()
         } catch let error as NSError {
             print("Error", error)
         }
@@ -152,6 +161,16 @@ class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDe
         } catch let error as NSError {
             print("Error", error)
         }
+    }
+    
+    @objc func recargarDatos() {
+        llamarImagenes()
+        coleccion.reloadData()
+        stop()
+    }
+    
+    func stop() {
+        refrescar.endRefreshing()
     }
     
 
