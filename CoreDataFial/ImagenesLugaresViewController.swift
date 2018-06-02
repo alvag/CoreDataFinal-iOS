@@ -33,6 +33,18 @@ class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDe
         let righButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(accionCamara))
         self.navigationItem.rightBarButtonItem = righButton
         
+        // estilo para el collectionview
+        
+        let itemSize = UIScreen.main.bounds.width / 3 - 3
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsetsMake(20, 0, 10, 0)
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        
+        layout.minimumInteritemSpacing = 3
+        layout.minimumLineSpacing = 3
+        
+        coleccion.collectionViewLayout = layout
+        
         llamarImagenes()
     }
     
