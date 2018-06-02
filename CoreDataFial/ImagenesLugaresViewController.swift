@@ -7,16 +7,24 @@
 //
 
 import UIKit
+import CoreData
 
 class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var imagenLugar: Lugares!
+    var id: Int16!
+    var imagen: UIImage!
+    
+    func conexion() -> NSManagedObjectContext{
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        return delegate.persistentContainer.viewContext
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = imagenLugar.nombre
-        
+        id = imagenLugar.id
         let righButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(accionCamara))
         self.navigationItem.rightBarButtonItem = righButton
     }
@@ -61,8 +69,29 @@ class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDe
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        //let imagenTomada = info[UIImagePickerControllerEditedImage] as? UIImage
-        //imagen.image = imagenTomada
+        let imagenTomada = info[UIImagePickerControllerEditedImage] as? UIImage
+        imagen = imagenTomada
+        
+        let contexto = conexion()
+        let entityImagenes = NSEntityDescription.insertNewObject(forEntityName: "Imagenes", into: contexto) as! Imagenes
+        
+        let uuid = UUID()
+        
+        entityImagenes.id = uuid
+        entityImagenes.id_lugares = id
+        let imagenFinal = UIImagePNGRepresentation(imagen) as Data?
+        entityImagenes.imagen = imagenFinal
+        
+        imagenLugar.mutableSetValue(forKey: "imagenes").add(entityImagenes)
+        
+        do {
+            try contexto.save()
+            dismiss(animated: true, completion: nil)
+            print("Imagenes guardadas")
+        } catch let error as NSError {
+            print("Error", error)
+        }
+        
         dismiss(animated: true, completion: nil)
     }
     
