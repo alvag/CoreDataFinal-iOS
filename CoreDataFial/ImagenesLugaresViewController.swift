@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImagenesLugaresViewController: UIViewController {
+class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var imagenLugar: Lugares!
 
@@ -22,9 +22,53 @@ class ImagenesLugaresViewController: UIViewController {
     }
     
     @objc func accionCamara() {
-        print("Abrir camara")
+        
+        let alerta = UIAlertController(title: "Tomar foto", message: "Cámara/Galería", preferredStyle: .actionSheet)
+        
+        let accionCamara = UIAlertAction(title: "Tomar fotografía", style: .default) { (action) in
+            self.tomarFotografia()
+        }
+        
+        let accionGaleria = UIAlertAction(title: "Entrar a galería", style: .default) { (action) in
+            self.entrarGaleria()
+        }
+        
+        let accionCancelar = UIAlertAction(title: "Cancelar", style: .destructive, handler: nil)
+        
+        alerta.addAction(accionCamara)
+        alerta.addAction(accionGaleria)
+        alerta.addAction(accionCancelar)
+        
+        present(alerta, animated: true, completion: nil)
+        
+        
+    }
+    
+    func tomarFotografia() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func entrarGaleria() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
     }
 
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        //let imagenTomada = info[UIImagePickerControllerEditedImage] as? UIImage
+        //imagen.image = imagenTomada
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
     
 
 
