@@ -123,11 +123,56 @@
                     </view>
                     <connections>
                         <outlet property="coleccion" destination="T9A-Qi-AI7" id="NDb-lU-N8Q"/>
+                        <segue destination="NSI-rD-1Zp" kind="show" identifier="imagen" id="dwK-I5-VRh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGN-dP-aZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2712.8000000000002" y="-526.6866566716642"/>
+        </scene>
+        <!--Imagen Vista View Controller-->
+        <scene sceneID="7Zd-MT-z6o">
+            <objects>
+                <viewController id="NSI-rD-1Zp" customClass="ImagenVistaViewController" customModule="CoreDataFial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YTx-nK-o6u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7h3-Ed-oTS">
+                                <rect key="frame" x="0.0" y="586" width="375" height="32"/>
+                                <color key="backgroundColor" red="1" green="0.18597759429999999" blue="0.097798455219999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Eliminar">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="eliminar:" destination="NSI-rD-1Zp" eventType="touchUpInside" id="bKh-M8-PPk"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kaR-eu-7ia">
+                                <rect key="frame" x="0.0" y="64" width="375" height="523"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kaR-eu-7ia" firstAttribute="trailing" secondItem="rav-5K-RqK" secondAttribute="trailing" id="1J5-w4-Sgm"/>
+                            <constraint firstItem="7h3-Ed-oTS" firstAttribute="bottom" secondItem="rav-5K-RqK" secondAttribute="bottom" id="AUI-TX-Z89"/>
+                            <constraint firstItem="7h3-Ed-oTS" firstAttribute="trailing" secondItem="rav-5K-RqK" secondAttribute="trailing" id="IMN-1L-229"/>
+                            <constraint firstItem="kaR-eu-7ia" firstAttribute="top" secondItem="rav-5K-RqK" secondAttribute="top" id="JG1-xM-7zg"/>
+                            <constraint firstItem="kaR-eu-7ia" firstAttribute="leading" secondItem="rav-5K-RqK" secondAttribute="leading" id="lcE-Hc-JyJ"/>
+                            <constraint firstItem="rav-5K-RqK" firstAttribute="bottom" secondItem="kaR-eu-7ia" secondAttribute="bottom" constant="31" id="luI-6G-04f"/>
+                            <constraint firstItem="7h3-Ed-oTS" firstAttribute="leading" secondItem="rav-5K-RqK" secondAttribute="leading" id="pPv-xk-e9C"/>
+                            <constraint firstItem="7h3-Ed-oTS" firstAttribute="top" secondItem="rav-5K-RqK" secondAttribute="top" constant="522" id="uyH-1N-C2b"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rav-5K-RqK"/>
+                    </view>
+                    <connections>
+                        <outlet property="imagen" destination="kaR-eu-7ia" id="Wjf-JM-dXE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vMi-aB-8ld" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3434.4000000000001" y="-532.98350824587715"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="usJ-ga-UTl">

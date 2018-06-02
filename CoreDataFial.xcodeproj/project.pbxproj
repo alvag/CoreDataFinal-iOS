@@ -16,6 +16,7 @@
 		50E8E20220C2E9410012C06C /* AgregarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E8E20120C2E9410012C06C /* AgregarViewController.swift */; };
 		50E8E20420C2FB760012C06C /* ImagenesLugaresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E8E20320C2FB760012C06C /* ImagenesLugaresViewController.swift */; };
 		50E8E20620C3067F0012C06C /* ImagenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E8E20520C3067F0012C06C /* ImagenCollectionViewCell.swift */; };
+		50E8E20820C3135B0012C06C /* ImagenVistaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E8E20720C3135B0012C06C /* ImagenVistaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		50E8E20120C2E9410012C06C /* AgregarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgregarViewController.swift; sourceTree = "<group>"; };
 		50E8E20320C2FB760012C06C /* ImagenesLugaresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagenesLugaresViewController.swift; sourceTree = "<group>"; };
 		50E8E20520C3067F0012C06C /* ImagenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagenCollectionViewCell.swift; sourceTree = "<group>"; };
+		50E8E20720C3135B0012C06C /* ImagenVistaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagenVistaViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				50E8E20120C2E9410012C06C /* AgregarViewController.swift */,
 				50E8E20320C2FB760012C06C /* ImagenesLugaresViewController.swift */,
 				50E8E20520C3067F0012C06C /* ImagenCollectionViewCell.swift */,
+				50E8E20720C3135B0012C06C /* ImagenVistaViewController.swift */,
 				50E8E1F020C22A5D0012C06C /* Main.storyboard */,
 				50E8E1F620C22A5D0012C06C /* Assets.xcassets */,
 				50E8E1F820C22A5D0012C06C /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 				50E8E20420C2FB760012C06C /* ImagenesLugaresViewController.swift in Sources */,
 				50E8E1F520C22A5D0012C06C /* CoreDataFial.xcdatamodeld in Sources */,
 				50E8E20620C3067F0012C06C /* ImagenCollectionViewCell.swift in Sources */,
+				50E8E20820C3135B0012C06C /* ImagenVistaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
