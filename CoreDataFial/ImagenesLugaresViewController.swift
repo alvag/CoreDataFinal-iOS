@@ -9,11 +9,13 @@
 import UIKit
 import CoreData
 
-class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var imagenLugar: Lugares!
     var id: Int16!
     var imagen: UIImage!
+    var imagenes: [Imagenes] = []
+    @IBOutlet weak var coleccion: UICollectionView!
     
     func conexion() -> NSManagedObjectContext{
         let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -23,10 +25,15 @@ class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        coleccion.delegate = self
+        coleccion.dataSource = self
+        
         self.title = imagenLugar.nombre
         id = imagenLugar.id
         let righButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(accionCamara))
         self.navigationItem.rightBarButtonItem = righButton
+        
+        llamarImagenes()
     }
     
     @objc func accionCamara() {
@@ -97,6 +104,37 @@ class ImagenesLugaresViewController: UIViewController, UIImagePickerControllerDe
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imagenes.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = coleccion.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImagenCollectionViewCell
+        
+        let imagen = imagenes[indexPath.row]
+        
+        if let imagen = imagen.imagen {
+            cell.imagen.image = UIImage(data: imagen as Data)
+        }
+        
+        return cell
+    }
+    
+    func llamarImagenes() {
+        let contexto = conexion()
+        let fetchRequest: NSFetchRequest<Imagenes> = Imagenes.fetchRequest()
+        
+        do {
+            imagenes = try contexto.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Error", error)
+        }
     }
     
 
